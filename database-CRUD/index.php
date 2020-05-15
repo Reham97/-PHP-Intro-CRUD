@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <html>
 <head>
-<title> Reham Hussein Ramadan</title>
+<title>Name: Reham Hussein Ramadan</title>
 </head>
  
 <?php 
