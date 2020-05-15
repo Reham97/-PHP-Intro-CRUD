@@ -10,7 +10,7 @@ $databaseHost = '127.0.0.1';
 $databaseName = 'test';
 $databaseUsername = 'reham';
 $databasePassword = '';
-
+$salt = 'XyZzy12*_';
 try{
     $conn = new PDO("mysql:host=$databaseHost;dbname=$databaseName", $databaseUsername, $databasePassword); 
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -24,7 +24,7 @@ try{
             $statment->execute(
                 array(
                     'email' => $_POST["email"],
-                    'password' => $_POST["pass"]
+                    'password' =>  md5($salt.$_POST['pass'])
                 )
                 );
                 $count = $statment->rowCount();
@@ -40,7 +40,8 @@ try{
                 }
                 else
                 {
-                    $warnning = "Inavlid Input Data ";
+                    
+                    $warnning =  md5($_POST['pass'].$salt) ;
                     $_SESSION['warnning'] = $warnning;
                     header("Location: login.php");            
                 }
